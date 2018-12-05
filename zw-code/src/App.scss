@@ -1,0 +1,110 @@
+$color-dog: #000000;
+$color-bone: #FAEBD7;
+$color-dirt: #A52A2A;
+$color-winner: #1E90FF;
+
+:root {
+  --move-time: 4s;
+  --move-pct-x-1: 100%;
+  --move-pct-x-2: 175%;
+  --move-pct-x-3: 300%;
+  --move-pct-y-1: 100%;
+  --move-pct-y-2: 250%;
+  --move-pct-y-3: 150%;
+  --spin-degrees-1: 45deg;
+  --spin-degrees-2: -135deg;
+  --spin-degrees-3: 90deg;
+}
+
+.app-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+
+  .header {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    overflow: hidden;
+    border-bottom: 1px solid $color-dog;
+    padding: 0px 12px;
+
+    .title {
+      font-size: 18px;
+    }
+  }
+
+  .body {
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .dog {
+      fill: $color-dog;
+      height: 80px;
+      animation: move-it infinite var(--move-time) ease-in-out;
+    }
+  }
+
+  .scoreboard-container {
+    margin: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+
+    .bone {
+      fill: $color-bone;
+      stroke: $color-dirt;
+      stroke-width: 0.5px;
+      height: 25px;
+      margin: 4px 0px 0px 0px;
+    }
+  }
+
+  .winner-container {
+    flex: 1 1 auto;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+    color: $color-winner;
+    font-style: italic;
+    font-weight: 700;
+
+    .hero {
+      height: 40vh;
+    }
+  }
+
+  @keyframes move-it {
+    0%, 100% {
+      transform: translate(var(--move-pct-x-1), var(--move-pct-y-2)) rotate(0deg);
+    }
+    20% {
+      transform: translate(var(--move-pct-x-3), var(--move-pct-y-1)) rotate(var(--spin-degrees-1));
+    }
+    50% {
+      transform: translate(var(--move-pct-x-2), var(--move-pct-y-2)) rotate(var(--spin-degrees-2));
+    }
+    80% {
+      transform: translate(var(--move-pct-x-1), var(--move-pct-y-3)) rotate(var(--spin-degrees-3));
+    }
+  }
+
+  @media all and (max-width: 1200px) {
+    .help { display: none; }
+  }
+}
